@@ -6,5 +6,7 @@ const menuOptions = [
     { name: 'Monstruoso', price: 50, vegan: false, src: './img/monstruoso.png' },
     { name: 'Big Vegano', price: 55, vegan: true, src: './img/xvegan.png' },
     { name: 'X-Vegan', price: 45, vegan: true, src: './img/monstruoso-vegan.png' },
-    ]
-    
+];
+
+// Exportar o array menuOptions para uso em outros arquivos (opcional)
+// export { menuOptions };
