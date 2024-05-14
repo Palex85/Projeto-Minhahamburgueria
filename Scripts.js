@@ -10,10 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const list = document.getElementById('menu-list');
     const buttonShowAll = document.querySelector('.show-all');
+    const buttonMapAll = document.querySelector('.map-all');
+    const sumAll = document.querySelector('.sum-all')
 
-    function showAll() {
+
+    function showAll(productsArray) {
         let myLi = '';
-        menuOptions.forEach((product) => {
+        productsArray.forEach((product) => {
             myLi += `
                 <li>
                     <img src="${product.src}">
@@ -25,5 +28,29 @@ document.addEventListener('DOMContentLoaded', () => {
         list.innerHTML = myLi;
     }
 
-    buttonShowAll.addEventListener('click', showAll);
+    function mapAllItems() {
+        const newPrices = menuOptions.map((product) => ({
+            ...product, // Spread operator
+            price: product.price * 0.9 // dar 10% de desconto
+
+        }
+        ))
+        showAll(newPrices)
+    }
+
+
+    function sumAllItems() {
+        const totalValue = menuOptions.reduce((acc, curr) => acc + curr.price, 0)
+
+        list.innerHTML =
+            `
+        <li>
+                    <p> Your total value is R$ ${totalValue}</p>
+                </li>
+        `
+    }
+
+    buttonShowAll.addEventListener('click', () => showAll(menuOptions));
+    buttonMapAll.addEventListener('click', mapAllItems);
+    sumAll.addEventListener('click', sumAllItems);
 });
