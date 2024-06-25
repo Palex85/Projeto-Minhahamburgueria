@@ -12,7 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttonShowAll = document.querySelector('.show-all');
     const buttonMapAll = document.querySelector('.map-all');
     const sumAll = document.querySelector('.sum-all')
+    const filterAll = document.querySelector('.filter-all')
 
+    function formatCurrency(value){
+        const newValue = value.toLocaleString('pt-br', {
+            style: 'currency',
+            currency: 'BRL',
+        })
+       
+        return newValue
+
+    }
 
     function showAll(productsArray) {
         let myLi = '';
@@ -50,7 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     }
 
+    function filterAllItems(){
+        const filterJustVegan = menuOptions.filter((product) => product.vegan)
+        showAll(filterJustVegan)
+    }
+
     buttonShowAll.addEventListener('click', () => showAll(menuOptions));
     buttonMapAll.addEventListener('click', mapAllItems);
     sumAll.addEventListener('click', sumAllItems);
+    filterAll.addEventListener('click', filterAllItems)
 });
